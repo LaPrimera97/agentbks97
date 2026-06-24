@@ -11,7 +11,7 @@ const CONFIG = {
      from https://console.anthropic.com
      Keep this file private — do not share it publicly
   ─────────────────────────────────────────────── */
-  API_KEY: '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',
+  API_KEY: '',
 
   /* ── MODEL ─────────────────────────────────── */
   MODEL: 'claude-sonnet-4-6',
