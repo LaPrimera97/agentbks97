@@ -1,0 +1,270 @@
+/* ═══════════════════════════════════════════════════
+   AGENT BKS97 — main.css
+   Shared variables, reset and base styles
+   Used by both index.html and builder.html
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── RESET ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CSS VARIABLES ─────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --void:    #060402;
+  --panel:   #0e0b06;
+  --surface: #161009;
+  --lift:    #1e1509;
+  --raise:   #261c09;
+  --faint:   #110d07;
+
+  /* Brand Colours */
+  --gold:    #c9a84c;
+  --bright:  #f2c84b;
+  --amber:   #e8921a;
+  --cream:   #f5f0e8;
+
+  /* Neutral */
+  --muted:   #8a7550;
+  --dim:     #3d3018;
+  --sage:    #5a4e35;
+
+  /* Borders & Glows */
+  --border:      rgba(201, 168, 76, 0.12);
+  --border-hi:   rgba(242, 200, 75, 0.35);
+  --border-dim:  rgba(201, 168, 76, 0.06);
+  --glow:        rgba(242, 200, 75, 0.07);
+  --glow-amber:  rgba(232, 146, 26, 0.14);
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  /* Transitions */
+  --trans-fast:   0.15s ease;
+  --trans-mid:    0.25s ease;
+  --trans-slow:   0.4s ease;
+
+  /* Spacing scale */
+  --space-xs:  0.4rem;
+  --space-sm:  0.8rem;
+  --space-md:  1.4rem;
+  --space-lg:  2.4rem;
+  --space-xl:  4rem;
+  --space-2xl: 7rem;
+}
+
+/* ── BASE ──────────────────────────────────────── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+input, textarea { font-family: inherit; }
+
+/* ── BACKGROUND CANVAS ─────────────────────────── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── TOAST NOTIFICATION ────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(200, 50, 30, 0.12);
+  border: 1px solid rgba(200, 50, 30, 0.28);
+  padding: 0.7rem 1.6rem;
+  border-radius: 2px;
+  z-index: 9999;
+  font-size: 0.82rem;
+  color: #e07060;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+#toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── SHARED TYPOGRAPHY ─────────────────────────── */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--cream);
+}
+.display-title span { color: var(--gold); }
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── SHARED BUTTONS ────────────────────────────── */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1.8rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--trans-mid), transform var(--trans-fast), box-shadow var(--trans-mid);
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--void);
+}
+.btn-gold:hover {
+  background: var(--bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.22);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--cream);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: var(--glow);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.48rem 1rem;
+  border-radius: 1px;
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ── SECTION SHARED ────────────────────────────── */
+.section {
+  padding: var(--space-2xl) 6%;
+  position: relative;
+  z-index: 2;
+}
+.section-alt {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── ANIMATIONS ────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.8); opacity: 0.3; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes scan-line {
+  from { left: -60%; }
+  to   { left: 130%; }
+}
+@keyframes ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(1.1); opacity: 0.1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── REVEAL ON SCROLL ──────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+
+/* ── REDUCE MOTION ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

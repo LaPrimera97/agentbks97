@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Agent BKS97 — Builder</title>
+<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="css/builder.css"/>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div id="toast"></div>
+
+<div class="builder-wrap">
+
+  <!-- NAV -->
+  <nav class="bld-nav">
+    <a class="bld-logo" href="index.html">
+      <span class="bld-logo-agent">Agent</span>
+      <span class="bld-logo-name">BKS<span>97</span></span>
+    </a>
+    <div class="bld-status-row">
+      <div class="status-pill active">
+        <span class="status-dot live"></span>Claude Sonnet
+      </div>
+      <div class="status-pill" id="gen-status">
+        <span class="status-dot"></span>Ready
+      </div>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span id="bld-clock">00:00</span>
+      </div>
+    </div>
+    <div class="bld-nav-actions">
+      <a href="index.html" class="bld-nav-btn">← Home</a>
+      <button class="bld-nav-btn" id="dl-btn" onclick="downloadPage()" disabled>↓ Download</button>
+      <button class="bld-nav-btn primary" onclick="resetBuilder()">New Page</button>
+    </div>
+  </nav>
+
+  <!-- BODY -->
+  <div class="bld-body">
+
+    <!-- SIDEBAR -->
+    <aside class="bld-sidebar">
+
+      <!-- TABS -->
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" data-tab="prompt">Prompt</button>
+        <button class="sidebar-tab" data-tab="style">Style</button>
+        <button class="sidebar-tab" data-tab="sections">Sections</button>
+      </div>
+
+      <!-- TAB CONTENT -->
+      <div class="sidebar-content">
+
+        <!-- PROMPT TAB -->
+        <div class="tab-panel active" id="tab-prompt">
+          <div class="field-group">
+            <div class="field-label">Business description</div>
+            <textarea class="field-textarea" id="main-prompt" rows="8"
+              placeholder="e.g. A landing page for my hair salon called Naledi's Hair Studio in Soweto. We specialise in braids, weaves and locs. Our colours are purple and gold. Add a WhatsApp button for 0712345678..."></textarea>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Quick start</div>
+            <div class="chips-wrap">
+              <button class="quick-chip" onclick="fillTemplate('hair')">Hair Salon</button>
+              <button class="quick-chip" onclick="fillTemplate('restaurant')">Restaurant</button>
+              <button class="quick-chip" onclick="fillTemplate('tutoring')">Tutoring</button>
+              <button class="quick-chip" onclick="fillTemplate('spaza')">Spaza Shop</button>
+              <button class="quick-chip" onclick="fillTemplate('construction')">Construction</button>
+              <button class="quick-chip" onclick="fillTemplate('cleaning')">Cleaning</button>
+              <button class="quick-chip" onclick="fillTemplate('gym')">Gym</button>
+              <button class="quick-chip" onclick="fillTemplate('mechanic')">Mechanic</button>
+              <button class="quick-chip" onclick="fillTemplate('beauty')">Beauty</button>
+              <button class="quick-chip" onclick="fillTemplate('nonprofit')">Non-Profit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STYLE TAB -->
+        <div class="tab-panel" id="tab-style">
+          <div class="field-group">
+            <div class="field-label">Colour theme</div>
+            <div class="palette-grid">
+              <div class="palette-swatch selected" data-palette="dark"    title="Dark"    style="background:#0f0f0f;border:1px solid #333"></div>
+              <div class="palette-swatch"          data-palette="light"   title="Light"   style="background:#f5f5f5;border:1px solid #ccc"></div>
+              <div class="palette-swatch"          data-palette="purple"  title="Purple"  style="background:linear-gradient(135deg,#2d0a4e,#7c3aed)"></div>
+              <div class="palette-swatch"          data-palette="emerald" title="Emerald" style="background:linear-gradient(135deg,#064e3b,#10b981)"></div>
+              <div class="palette-swatch"          data-palette="ocean"   title="Ocean"   style="background:linear-gradient(135deg,#0c1a3a,#1d4ed8)"></div>
+              <div class="palette-swatch"          data-palette="sunset"  title="Sunset"  style="background:linear-gradient(135deg,#7c1d0a,#ea580c)"></div>
+              <div class="palette-swatch"          data-palette="rose"    title="Rose"    style="background:linear-gradient(135deg,#4a0d1e,#e11d48)"></div>
+              <div class="palette-swatch"          data-palette="gold"    title="Gold"    style="background:linear-gradient(135deg,#1a1200,#c9a84c)"></div>
+              <div class="palette-swatch"          data-palette="slate"   title="Slate"   style="background:linear-gradient(135deg,#0f172a,#334155)"></div>
+              <div class="palette-swatch"          data-palette="mint"    title="Mint"    style="background:linear-gradient(135deg,#022c22,#059669)"></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Font style</div>
+            <div class="font-options">
+              <div class="font-option selected" data-font="modern">
+                <div class="font-option-name">Modern</div>
+                <div class="font-option-sample">Clean &amp; Contemporary</div>
+              </div>
+              <div class="font-option" data-font="elegant">
+                <div class="font-option-name" style="font-family:Georgia,serif">Elegant</div>
+                <div class="font-option-sample">Classic Serif Style</div>
+              </div>
+              <div class="font-option" data-font="bold">
+                <div class="font-option-name" style="font-weight:900;letter-spacing:0.06em">Bold</div>
+                <div class="font-option-sample">Strong &amp; Impactful</div>
+              </div>
+              <div class="font-option" data-font="minimal">
+                <div class="font-option-name" style="font-weight:300">Minimal</div>
+                <div class="font-option-sample">Light &amp; Refined</div>
+              </div>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Page style</div>
+            <div class="style-options">
+              <div class="style-option selected" data-style="professional">
+                <div class="style-option-name">Professional</div>
+                <div class="style-option-desc">Corporate, clean</div>
+              </div>
+              <div class="style-option" data-style="vibrant">
+                <div class="style-option-name">Vibrant</div>
+                <div class="style-option-desc">Bold, colourful</div>
+              </div>
+              <div class="style-option" data-style="luxury">
+                <div class="style-option-name">Luxury</div>
+                <div class="style-option-desc">Premium, refined</div>
+              </div>
+              <div class="style-option" data-style="playful">
+                <div class="style-option-name">Playful</div>
+                <div class="style-option-desc">Fun, energetic</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTIONS TAB -->
+        <div class="tab-panel" id="tab-sections">
+          <div class="field-group">
+            <div class="field-label">Include these sections</div>
+            <div class="section-list">
+              <div class="section-toggle on" data-section="Hero banner"><span class="section-toggle-name">Hero / Banner</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="Navigation bar"><span class="section-toggle-name">Navigation Bar</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="About us"><span class="section-toggle-name">About Us</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="Services or products"><span class="section-toggle-name">Services / Products</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="Pricing and rates"><span class="section-toggle-name">Pricing / Rates</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="Gallery or portfolio"><span class="section-toggle-name">Gallery / Portfolio</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="Testimonials"><span class="section-toggle-name">Testimonials</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="Contact section with WhatsApp button"><span class="section-toggle-name">Contact / WhatsApp</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle on" data-section="Footer"><span class="section-toggle-name">Footer</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="FAQ"><span class="section-toggle-name">FAQ</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="Team or staff profiles"><span class="section-toggle-name">Team / Staff</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="How it works steps"><span class="section-toggle-name">How It Works</span><div class="toggle-switch"></div></div>
+              <div class="section-toggle"    data-section="Opening hours"><span class="section-toggle-name">Opening Hours</span><div class="toggle-switch"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sidebar-content -->
+
+      <!-- GENERATE BUTTON -->
+      <div class="generate-area">
+        <button class="generate-btn" id="generate-btn" onclick="generate()">
+          <div class="scan-line"></div>
+          Generate Page →
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- PREVIEW PANEL -->
+    <div class="preview-panel">
+
+      <!-- TOP BAR -->
+      <div class="preview-topbar">
+        <div class="preview-dots">
+          <div class="pdot pdot-r"></div>
+          <div class="pdot pdot-y"></div>
+          <div class="pdot pdot-g"></div>
+        </div>
+        <div class="preview-address" id="preview-address">agentbks97 · awaiting generation</div>
+        <div class="device-toggle">
+          <button class="device-btn active" data-device="desktop">⬜ Desktop</button>
+          <button class="device-btn" data-device="mobile">📱 Mobile</button>
+        </div>
+      </div>
+
+      <!-- CANVAS AREA -->
+      <div class="preview-canvas">
+
+        <!-- STANDBY -->
+        <div class="standby-screen" id="standby-screen">
+          <canvas id="grid-canvas"></canvas>
+          <div class="standby-content">
+            <div class="standby-ring">
+              <span class="standby-icon">◈</span>
+            </div>
+            <div class="standby-title">Awaiting Command</div>
+            <div class="standby-sub">
+              Describe your business &amp; generate<span class="blink-cursor">_</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading-screen" id="loading-screen">
+          <canvas id="load-canvas" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.28"></canvas>
+          <div style="position:relative;z-index:1;text-align:center">
+            <div class="loading-word">
+              <span id="loading-word-base" style="color:var(--surface)">BUILDING</span>
+              <div class="loading-word-fill" id="loading-word-fill">BUILDING</div>
+            </div>
+            <div class="loading-bar-track">
+              <div class="loading-bar-fill" id="loading-bar-fill"></div>
+            </div>
+            <div class="loading-pct" id="loading-pct">0%</div>
+            <div class="loading-step-text" id="loading-step-text">Initialising...</div>
+          </div>
+          <div class="loading-timer" id="loading-timer">0.0s</div>
+        </div>
+
+        <!-- IFRAME PREVIEW -->
+        <div class="frame-container" id="frame-container">
+          <iframe id="preview-iframe"
+            sandbox="allow-scripts allow-same-origin"
+            title="Generated page preview">
+          </iframe>
+        </div>
+
+      </div><!-- /preview-canvas -->
+
+      <!-- REFINE BAR -->
+      <div class="refine-bar" id="refine-bar">
+        <span class="refine-pre">// Refine:</span>
+        <input class="refine-input" id="refine-input" type="text"
+          placeholder="e.g. Make the hero background black, change the button colour to red, add a gallery section..."/>
+        <button class="refine-btn" id="refine-btn" onclick="iterate()">Apply →</button>
+      </div>
+
+    </div><!-- /preview-panel -->
+
+  </div><!-- /bld-body -->
+</div><!-- /builder-wrap -->
+
+<script src="js/config.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/builder.js"></script>
+</body>
+</html>

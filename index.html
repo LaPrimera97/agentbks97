@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Agent BKS97 — AI Landing Page Builder for South Africa</title>
+<meta name="description" content="Describe your business. Agent BKS97 builds your professional landing page instantly using Claude AI. No code. No designers. Built for South Africa."/>
+<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="css/marketing.css"/>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div id="toast"></div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="mobile-menu">
+  <a href="#features" class="mm-link">Features</a>
+  <a href="#how" class="mm-link">How It Works</a>
+  <a href="#templates" class="mm-link">Templates</a>
+  <a href="#pricing" class="mm-link">Pricing</a>
+  <a href="builder.html" class="mm-link mm-cta">Launch Builder →</a>
+</div>
+
+<!-- NAV -->
+<nav class="mkt-nav" id="mkt-nav">
+  <a class="nav-logo" href="#">
+    <span class="nav-logo-agent">Agent</span>
+    <span class="nav-logo-name">BKS<span>97</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="builder.html" class="nav-cta">Launch Builder →</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kicker">
+    <span class="kicker-dot"></span>
+    AI-Powered · No Code · Built for South Africa
+  </div>
+  <h1 class="hero-headline">
+    <span class="line-sm">Describe your business.</span>
+    <span class="line-gold">We build<br/>your page.</span>
+  </h1>
+  <p class="hero-sub">
+    Agent BKS97 uses <strong>Claude AI</strong> to turn a plain English description into a professional, mobile-ready landing page in under 30 seconds. No templates. No drag-and-drop. Just describe it.
+  </p>
+  <div class="hero-actions">
+    <button class="btn-hero-primary" data-launch-builder>Start Building Free →</button>
+    <a class="btn-hero-secondary" href="#how">See How It Works</a>
+  </div>
+
+  <!-- DEMO MOCKUP -->
+  <div class="hero-demo">
+    <div class="demo-bar">
+      <div class="demo-dots">
+        <div class="dd dd-r"></div>
+        <div class="dd dd-y"></div>
+        <div class="dd dd-g"></div>
+      </div>
+      <div class="demo-url-bar">agentbks97.co.za · builder</div>
+    </div>
+    <div class="demo-body">
+      <div class="demo-left">
+        <div>
+          <div class="demo-field-label">$ Describe your business</div>
+          <div class="demo-input-mock">A landing page for my hair salon called Naledi's Hair Studio in Soweto. Purple and gold colours. Add a WhatsApp button for 0712345678...</div>
+        </div>
+        <div>
+          <div class="demo-field-label">// Quick start</div>
+          <div class="demo-chip-row">
+            <div class="demo-chip">Hair Salon</div>
+            <div class="demo-chip">Restaurant</div>
+            <div class="demo-chip">Tutoring</div>
+            <div class="demo-chip">Construction</div>
+          </div>
+        </div>
+        <div class="demo-gen-mock">GENERATE PAGE →</div>
+      </div>
+      <div class="demo-right">
+        <div class="demo-site-mock">
+          <div class="ds-nav" style="background:rgba(59,7,100,0.5)"></div>
+          <div class="ds-hero" style="background:linear-gradient(135deg,#2d0a4e,#1a0730);color:#c084fc">NALEDI'S HAIR STUDIO</div>
+          <div class="ds-cards">
+            <div class="ds-card" style="background:rgba(59,7,100,0.2)"></div>
+            <div class="ds-card" style="background:rgba(59,7,100,0.2)"></div>
+            <div class="ds-card" style="background:rgba(59,7,100,0.2)"></div>
+          </div>
+          <div class="ds-cta" style="background:#7c3aed"></div>
+          <div class="ds-cards">
+            <div class="ds-card"></div>
+            <div class="ds-card"></div>
+            <div class="ds-card"></div>
+          </div>
+        </div>
+        <div class="demo-generated-badge">
+          <span class="badge-live"></span>Generated in 18.4s
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item reveal">
+    <div class="stat-number">30s</div>
+    <div class="stat-label">Average generation time</div>
+  </div>
+  <div class="stat-item reveal d1">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Mobile responsive output</div>
+  </div>
+  <div class="stat-item reveal d2">
+    <div class="stat-number">10+</div>
+    <div class="stat-label">Industry templates</div>
+  </div>
+  <div class="stat-item reveal d3">
+    <div class="stat-number">R0</div>
+    <div class="stat-label">To get started today</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="eyebrow reveal">Features</div>
+  <h2 class="display-title reveal">Everything you need.<br/><span>Nothing you don't.</span></h2>
+  <p class="reveal" style="color:var(--muted);max-width:500px;line-height:1.8;margin-bottom:3.5rem;font-size:0.96rem">Built specifically for South African small businesses who need a professional online presence without the cost or complexity.</p>
+  <div class="features-grid reveal">
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">AI-Powered Generation</div>
+      <p class="feat-body">Describe your business in plain English and Claude AI builds a complete, professional landing page in seconds — no technical knowledge needed.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📱</div>
+      <div class="feat-title">Mobile-First Design</div>
+      <p class="feat-body">Every page generated is fully responsive and optimised for mobile — where most South African customers browse the internet.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💬</div>
+      <div class="feat-title">WhatsApp Integration</div>
+      <p class="feat-body">Automatically adds a WhatsApp contact button linked to your number. The standard way South African customers contact businesses.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎨</div>
+      <div class="feat-title">Iterate in Plain English</div>
+      <p class="feat-body">Not happy with something? Type "change the background to black" or "add a gallery section" and the page updates instantly.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📥</div>
+      <div class="feat-title">Download Ready</div>
+      <p class="feat-body">Download your complete page as a single HTML file. Host it free on Netlify, GitHub Pages, or your own server — your page, your hosting.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🇿🇦</div>
+      <div class="feat-title">South African Context</div>
+      <p class="feat-body">Prices in Rands, local phone formats, South African English — the AI understands your market and writes content that resonates locally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-alt" id="how">
+  <div class="eyebrow reveal">Process</div>
+  <h2 class="display-title reveal">Three steps.<br/><span>One great page.</span></h2>
+  <div class="how-steps reveal">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <div class="how-title">Describe Your Business</div>
+      <p class="how-body">Type what your business does, your brand colours, your services and pricing. The more detail you provide, the better and more accurate the result.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <div class="how-title">AI Builds Your Page</div>
+      <p class="how-body">Claude AI writes the complete HTML, CSS and JavaScript for your landing page — professionally designed, mobile-ready and ready to publish.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <div class="how-title">Download &amp; Publish</div>
+      <p class="how-body">Download your page as a single HTML file and host it anywhere for free. Or keep refining it with plain English change requests until it's perfect.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section class="section" id="templates">
+  <div class="eyebrow reveal">Quick Start Templates</div>
+  <h2 class="display-title reveal">Start from a<br/><span>real business example.</span></h2>
+  <p class="reveal" style="color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:3.5rem;font-size:0.96rem">Click any template to launch the builder with a detailed pre-written prompt for that industry.</p>
+  <div class="templates-grid reveal">
+
+    <div class="tmpl-card" data-template="hair">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#1a0a2e,#0d0618)">
+        <div class="tmpl-p-nav" style="background:rgba(150,50,200,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(150,50,200,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#c084fc">HAIR STUDIO</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(150,50,200,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(150,50,200,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(150,50,200,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Hair Salon</span>
+        <span class="tmpl-cat">Beauty</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+    <div class="tmpl-card" data-template="restaurant">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#1a0a00,#0d0700)">
+        <div class="tmpl-p-nav" style="background:rgba(200,100,0,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(200,100,0,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#fb923c">KASI FLAVOURS</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(200,100,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,100,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,100,0,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Restaurant</span>
+        <span class="tmpl-cat">Food &amp; Dining</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+    <div class="tmpl-card" data-template="tutoring">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#00102a,#000a18)">
+        <div class="tmpl-p-nav" style="background:rgba(0,100,200,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(0,100,200,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#60a5fa">TUTORING</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(0,100,200,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(0,100,200,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(0,100,200,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Tutoring</span>
+        <span class="tmpl-cat">Education</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+    <div class="tmpl-card" data-template="spaza">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#1a0000,#0d0000)">
+        <div class="tmpl-p-nav" style="background:rgba(200,0,0,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(200,0,0,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#f87171">SPAZA SHOP</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(200,0,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,0,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,0,0,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Spaza Shop</span>
+        <span class="tmpl-cat">Retail</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+    <div class="tmpl-card" data-template="construction">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#101010,#080808)">
+        <div class="tmpl-p-nav" style="background:rgba(200,120,0,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(200,120,0,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#fb923c">CONSTRUCTION</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(200,120,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,120,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,120,0,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Construction</span>
+        <span class="tmpl-cat">Trades</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+    <div class="tmpl-card" data-template="gym">
+      <div class="tmpl-preview" style="background:linear-gradient(135deg,#0a0a0a,#000000)">
+        <div class="tmpl-p-nav" style="background:rgba(200,180,0,0.35)"></div>
+        <div class="tmpl-p-hero" style="background:rgba(200,180,0,0.12)">
+          <span class="tmpl-p-hero-text" style="color:#eab308">GYM &amp; FITNESS</span>
+        </div>
+        <div class="tmpl-p-cards">
+          <div class="tmpl-p-card" style="background:rgba(200,180,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,180,0,0.18)"></div>
+          <div class="tmpl-p-card" style="background:rgba(200,180,0,0.18)"></div>
+        </div>
+      </div>
+      <div class="tmpl-info">
+        <span class="tmpl-name">Gym / Fitness</span>
+        <span class="tmpl-cat">Health</span>
+      </div>
+      <div class="tmpl-overlay"><button class="tmpl-use-btn">Use Template</button></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section-alt" id="pricing">
+  <div class="eyebrow reveal">Pricing</div>
+  <h2 class="display-title reveal">Simple pricing.<br/><span>Start free today.</span></h2>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-name">Starter</div>
+      <div class="price-amount">R0<span>/mo</span></div>
+      <div class="price-period">Free forever · No credit card required</div>
+      <ul class="price-features">
+        <li>3 page generations per month</li>
+        <li>Download HTML file</li>
+        <li>WhatsApp button integration</li>
+        <li>All 10 industry templates</li>
+        <li>Iterate with plain English</li>
+        <li class="na">Custom domain connection</li>
+        <li class="na">Unlimited generations</li>
+      </ul>
+      <button class="btn-price btn-price-ghost" data-launch-builder>Get Started Free</button>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-name">Pro</div>
+      <div class="price-amount">R99<span>/mo</span></div>
+      <div class="price-period">Billed monthly · Cancel anytime</div>
+      <ul class="price-features">
+        <li>Unlimited generations</li>
+        <li>Download HTML file</li>
+        <li>WhatsApp button integration</li>
+        <li>All 10 industry templates</li>
+        <li>Iterate with plain English</li>
+        <li>Custom domain connection</li>
+        <li class="na">Client management portal</li>
+      </ul>
+      <button class="btn-price btn-price-fill" data-launch-builder>Get Pro</button>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Agency</div>
+      <div class="price-amount">R299<span>/mo</span></div>
+      <div class="price-period">Billed monthly · Cancel anytime</div>
+      <ul class="price-features">
+        <li>Unlimited generations</li>
+        <li>Download HTML file</li>
+        <li>WhatsApp button integration</li>
+        <li>All 10 industry templates</li>
+        <li>Iterate with plain English</li>
+        <li>Custom domain connection</li>
+        <li>Client management portal</li>
+      </ul>
+      <button class="btn-price btn-price-ghost" data-launch-builder>Get Agency</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title reveal">Ready to build your <span>page?</span></h2>
+  <p class="cta-sub reveal">Join South African businesses getting online faster with Agent BKS97. No code. No designers. Just results.</p>
+  <button class="btn-hero-primary reveal" data-launch-builder>Launch the Builder →</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="mkt-footer">
+  <div class="footer-left">
+    <p>© 2026 <span>Agent BKS97</span> · A <span>BKS Incorporates</span> Product</p>
+  </div>
+  <div class="footer-center">
+    <p>Built for <span>South Africa</span></p>
+  </div>
+  <div class="footer-right">
+    <p>Powered by <span>Anthropic Claude</span></p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/marketing.js"></script>
+</body>
+</html>
