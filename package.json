@@ -1,0 +1,11 @@
+{
+  "name": "agentbks97",
+  "version": "1.0.0",
+  "description": "Agent BKS97 - South African landing page generator",
+  "scripts": {
+    "agent": "node agent/agent.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
