@@ -147,79 +147,53 @@ function getActiveSections() {
     .map(el => el.dataset.section);
 }
 
-/* ── BUILD SYSTEM PROMPT ─────────────────────────── */
-function buildSystemPrompt() {
-  const sections = getActiveSections().join(', ');
-  const palette  = PALETTES[State.selectedPalette]?.desc  || 'dark theme';
-  const font     = FONT_STYLES[State.selectedFont]         || FONT_STYLES.modern;
-  const style    = PAGE_STYLES[State.selectedStyle]        || PAGE_STYLES.professional;
-
-  return `You are an expert web designer specialising in stunning, professional landing pages for South African small businesses.
-
-Generate a complete, self-contained landing page as a single HTML file with all CSS and JS embedded.
-
-DESIGN REQUIREMENTS:
-- Colour theme: ${palette}
-- Typography: ${font}
-- Design style: ${style}
-- Required sections to include: ${sections}
-
-TECHNICAL REQUIREMENTS:
-- Return ONLY raw HTML starting with <!DOCTYPE html>. No markdown, no backticks, no commentary before or after.
-- All CSS inside a <style> tag. All JS inside a <script> tag. No external JS libraries.
-- One Google Font allowed via <link> tag.
-- Fully mobile responsive. Mobile-first approach. Test every breakpoint.
-- Sticky navigation bar if page has multiple sections.
-- Smooth scroll behaviour.
-- Subtle scroll-triggered animations (use IntersectionObserver).
-- Hover effects on all interactive elements.
-
-SOUTH AFRICAN CONTEXT:
-- All prices in South African Rands (R). Never use $ or £.
-- Phone numbers in South African format: 0XX XXX XXXX.
-- If a phone number is mentioned, add a prominent WhatsApp button using: https://wa.me/27XXXXXXXXX (replace leading 0 with 27, remove spaces).
-- Use South African English spelling (colour, centre, organise, etc).
-- Footer copyright year: 2026.
-
-QUALITY STANDARD — This is non-negotiable:
-- Must look like it was designed by a professional studio charging R50,000+/month.
-- Hero section: bold headline, compelling subheading, clear primary call-to-action button.
-- Strong visual hierarchy throughout every section.
-- Generous whitespace, consistent spacing system.
-- Colour used intentionally — not randomly.
-- Every section must feel intentional, polished and purposeful.
-- Do NOT use Lorem Ipsum. Use realistic, relevant South African content based on the business described.`;
+/* ── REQUEST OPTIONS ────────────────────────────── */
+function getOptions() {
+  return {
+    palette:  State.selectedPalette,
+    font:     State.selectedFont,
+    style:    State.selectedStyle,
+    sections: getActiveSections(),
+  };
 }
 
 /* ── API CALL ────────────────────────────────────── */
-async function callClaude(messages) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': CONFIG.API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-allow-browser': 'true',
-    },
-    body: JSON.stringify({
-      model:      CONFIG.MODEL,
-      max_tokens: CONFIG.MAX_TOKENS,
-      system:     buildSystemPrompt(),
-      messages,
-    }),
-  });
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    const msg = err?.error?.message || `API error ${res.status}`;
-    if (res.status === 401) throw new Error('Invalid API key. Update it in js/config.js');
-    if (res.status === 429) throw new Error('Rate limit reached. Please wait a moment and try again.');
-    if (res.status === 500) throw new Error('Claude API server error. Please try again.');
-    throw new Error(msg);
+async function callModel(messages) {
+  const id = crypto.randomUUID();
+
+  let start;
+  try {
+    start = await fetch(CONFIG.GENERATE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, options: getOptions(), messages }),
+    });
+  } catch (e) {
+    throw new Error('Could not reach the server. Check your connection and try again.');
   }
+  if (start.status !== 202) throw new Error('Could not start generation. Please try again.');
 
-  const data = await res.json();
-  return data.content.map(b => b.text || '').join('');
+  const deadline = Date.now() + CONFIG.POLL_TIMEOUT_MS;
+  let failures = 0;
+
+  while (Date.now() < deadline) {
+    await sleep(CONFIG.POLL_INTERVAL_MS);
+    let job;
+    try {
+      const res = await fetch(`${CONFIG.STATUS_URL}?id=${id}`, { cache: 'no-store' });
+      job = await res.json();
+      failures = 0;
+    } catch (e) {
+      failures++;
+      if (failures >= 5) throw new Error('Lost connection to the server. Please try again.');
+      continue;
+    }
+    if (job.status === 'done')  return job.content;
+    if (job.status === 'error') throw new Error(job.message || 'Generation failed. Please try again.');
+  }
+  throw new Error('Generation is taking too long. Please try again.');
 }
 
 /* ── EXTRACT HTML ───────────────────────────────── */
@@ -339,7 +313,7 @@ async function generate() {
   }];
 
   try {
-    const raw  = await callClaude(State.history);
+    const raw  = await callModel(State.history);
     const html = extractHTML(raw);
     State.currentHTML = html;
     State.history.push({ role: 'assistant', content: raw });
@@ -392,7 +366,7 @@ async function iterate() {
   setStatus('Updating...', true);
 
   try {
-    const raw  = await callClaude(State.history);
+    const raw  = await callModel(State.history);
     const html = extractHTML(raw);
     State.currentHTML = html;
     State.history.push({ role: 'assistant', content: raw });

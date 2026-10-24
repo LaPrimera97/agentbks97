@@ -1,21 +1,20 @@
 /* ═══════════════════════════════════════════════════
    AGENT BKS97 — config.js
    Central configuration file.
-   !! ONLY EDIT THIS FILE TO UPDATE YOUR API KEY !!
+   Front-end settings only. No keys live in this project.
 ═══════════════════════════════════════════════════ */
 
 const CONFIG = {
 
-  /* ── YOUR CLAUDE API KEY ───────────────────────
-     Replace the placeholder below with your real key
-     from https://console.anthropic.com
-     Keep this file private — do not share it publicly
+  /* ── SERVER ENDPOINTS ──────────────────────────
+     No keys or model settings live in the browser.
+     The Netlify functions hold them as environment
+     variables on the server.
   ─────────────────────────────────────────────── */
-  API_KEY: '',
-
-  /* ── MODEL ─────────────────────────────────── */
-  MODEL: 'claude-sonnet-4-6',
-  MAX_TOKENS: 8000,
+  GENERATE_URL: '/.netlify/functions/generate-background',
+  STATUS_URL: '/.netlify/functions/status',
+  POLL_INTERVAL_MS: 3000,
+  POLL_TIMEOUT_MS: 360000,
 
   /* ── APP INFO ──────────────────────────────── */
   APP_NAME: 'Agent BKS97',
@@ -53,42 +52,3 @@ const TEMPLATES = {
   nonprofit: `A landing page for a nonprofit organisation called Ubuntu Youth Foundation in Cape Town. We provide after-school tutoring, meals and mentorship for underprivileged youth aged 8 to 18 in Khayelitsha. We are SARS registered and donor-funded. Brand colours are warm gold (#c9a84c) and dark green (#14532d). Sections: emotional hero with a mission statement, our impact statistics (350 learners, 5 schools, 8 years), what we do, how to donate or volunteer, and a contact form.`,
 };
 
-/* ═══════════════════════════════════════════════════
-   PALETTE DEFINITIONS
-   Colour themes selectable in the builder
-═══════════════════════════════════════════════════ */
-
-const PALETTES = {
-  dark:     { label: 'Dark',     desc: 'very dark background (near black), light cream text, subtle gold accents' },
-  light:    { label: 'Light',    desc: 'clean white background, dark charcoal text, with warm accent colour' },
-  purple:   { label: 'Purple',   desc: 'deep purple background (#2d0a4e), light text, lavender and gold accents' },
-  emerald:  { label: 'Emerald',  desc: 'dark emerald green background (#064e3b), light text, bright green accents' },
-  ocean:    { label: 'Ocean',    desc: 'deep navy blue background (#0c1a3a), light text, bright blue and cyan accents' },
-  sunset:   { label: 'Sunset',   desc: 'dark warm background, light text, burnt orange and amber accent colours' },
-  rose:     { label: 'Rose',     desc: 'dark background with rose pink and deep red accent colours' },
-  gold:     { label: 'Gold',     desc: 'dark background with rich gold (#c9a84c) as the primary accent colour throughout' },
-  slate:    { label: 'Slate',    desc: 'dark slate grey background (#0f172a), light text, cool blue-grey accents' },
-  mint:     { label: 'Mint',     desc: 'dark background with fresh mint green and teal accent colours' },
-};
-
-/* ═══════════════════════════════════════════════════
-   FONT STYLE DEFINITIONS
-═══════════════════════════════════════════════════ */
-
-const FONT_STYLES = {
-  modern:  'Use a clean modern sans-serif font. Use "Inter" or "DM Sans" from Google Fonts.',
-  elegant: 'Use an elegant serif font for headings. Use "Playfair Display" from Google Fonts for headings and DM Sans for body.',
-  bold:    'Use a bold condensed display font for headings. Use "Oswald" or "Bebas Neue" from Google Fonts. Make headlines large and impactful.',
-  minimal: 'Use a minimal light-weight font. Use "Raleway" or "Nunito" from Google Fonts with generous spacing.',
-};
-
-/* ═══════════════════════════════════════════════════
-   PAGE STYLE DEFINITIONS
-═══════════════════════════════════════════════════ */
-
-const PAGE_STYLES = {
-  professional: 'Professional and corporate — clean organised layout, structured sections, conservative colour use, confidence-building.',
-  vibrant:      'Vibrant and energetic — bold colours, dynamic asymmetric layout, strong contrasts, eye-catching visuals.',
-  luxury:       'Luxury and premium — refined generous spacing, editorial feel, subtle animations, high-end brand positioning.',
-  playful:      'Playful and fun — rounded shapes, friendly warm colours, relaxed layout, approachable and inviting.',
-};
